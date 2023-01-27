@@ -3,12 +3,9 @@ package api.auth.token.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.ForeignKey;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Wellington Rodrigues
  *
  */
-@SuppressWarnings("deprecation")
+
 @Entity
 public class Telefone implements Serializable{
 
@@ -29,7 +26,7 @@ public class Telefone implements Serializable{
 	private String numero;
 	
 	@JsonIgnore //Evitar loop na lista de usuario
-	@ForeignKey(name = "usuario_id")
+	/* @ForeignKey(name = "usuario_id") */
 	@ManyToOne
 	private Usuario usuario;
 

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @EntityScan(basePackages = "api.auth.token.model")//Mapear e criar todas as tabelas dentro desse pacote
-@ComponentScan(basePackages = {"api.*"})//Varrer td projeto lendi as injeções de dependencias
+@ComponentScan(basePackages = {"api.*"})//Varrer td projeto lendo as injeções de dependencias
 @EnableJpaRepositories(basePackages = "api.auth.token.repository")//Mapear os repositorys do projeto
 @EnableTransactionManagement //Evitar erros de transações
 @EnableWebMvc //Ativar Recursos MVC
