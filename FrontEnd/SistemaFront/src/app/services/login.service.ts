@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Const } from '../constants/const';
 import { Router } from '@angular/router';
@@ -9,23 +9,27 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
+  @Output() mostrarMenuEmitter = new EventEmitter<boolean>();
+
   constructor(private http: HttpClient, private router: Router) { }
 
 
   public login(usuario: any) {
 
-    return this.http.post(Const.baseLogin, JSON.stringify(usuario)).subscribe(data => {
-      var token = JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1];
+    return this.http.post(Const.baseLogin, JSON.stringify(usuario)).subscribe({
 
-      localStorage.setItem("token", token);
-      //console.info("Token: " + token);
+      next: (data) => {
+        var token = JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1];
+        localStorage.setItem("token", token);
+        this.mostrarMenuEmitter.emit(true);
+        this.router.navigate(['home']);
 
-      this.router.navigate(['home']);
-    },
-      error => {
+      },
+      error: (error: Error) => {
         console.error("Não autorizado! " + error)
+        this.mostrarMenuEmitter.emit(false);
         alert('Acesso Negado!')
       }
-    );
+    });
   }
 }
