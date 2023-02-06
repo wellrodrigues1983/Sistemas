@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Usuario } from '../../model/usuario';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, public loginService: LoginService, /* public usuario: Usuario */) { }
 
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
   public usuario: Usuario = new Usuario();
 
 
@@ -26,9 +26,9 @@ export class LoginComponent implements OnInit {
   }
 
   createForm(usuario: Usuario) {
-    this.loginForm = new FormGroup({
-      login: new FormControl(usuario.login),
-      senha: new FormControl(usuario.senha)
+    this.loginForm = new UntypedFormGroup({
+      login: new UntypedFormControl(usuario.login),
+      senha: new UntypedFormControl(usuario.senha)
     })
 
     this.usuario = JSON.parse(JSON.stringify(this.loginForm.value));
