@@ -29,7 +29,7 @@ export class AppComponent {
   faIdBadge = faIdBadge;
   faPowerOff = faPowerOff;
 
-  constructor (private loginService: LoginService, private router: Router )  {}
+  constructor(private loginService: LoginService, private router: Router) { }
 
   mostrarMenu!: boolean;
 
@@ -38,39 +38,39 @@ export class AppComponent {
       mostrar => this.mostrarMenu = mostrar
     );
 
-    /* if(this.mostrarMenu === undefined || this.mostrarMenu === null) {
+    if(this.mostrarMenu === undefined || this.mostrarMenu === null) {
       this.router.navigate(['/'])
-    } */
+    }
 
     const mobileScreen = window.matchMedia("(max-width: 990px )");
-$(document).ready(function () {
-    $(".dashboard-nav-dropdown-toggle").click(function () {
+    $(document).ready(function () {
+      $(".dashboard-nav-dropdown-toggle").click(function () {
         $(this).closest(".dashboard-nav-dropdown")
-            .toggleClass("show")
-            .find(".dashboard-nav-dropdown")
-            .removeClass("show");
+          .toggleClass("show")
+          .find(".dashboard-nav-dropdown")
+          .removeClass("show");
         $(this).parent()
-            .siblings()
-            .removeClass("show");
-    });
-    $(".menu-toggle").click(function () {
+          .siblings()
+          .removeClass("show");
+      });
+      $(".menu-toggle").click(function () {
         if (mobileScreen.matches) {
-            $(".dashboard-nav").toggleClass("mobile-show");
+          $(".dashboard-nav").toggleClass("mobile-show");
         } else {
-            $(".dashboard").toggleClass("dashboard-compact");
+          $(".dashboard").toggleClass("dashboard-compact");
         }
+      });
     });
-});
 
   }
 
 
-  destroyer(){
+  destroyer() {
     localStorage.removeItem('token')
   }
 
 
-  public sair(){
+  public sair() {
     localStorage.clear();
     this.router.navigate(['/'])
     console.log("token: " + localStorage.getItem('token'));
