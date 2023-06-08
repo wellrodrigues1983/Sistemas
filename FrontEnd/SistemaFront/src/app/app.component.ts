@@ -1,17 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { LoginService } from './components/login/login.service';
 import { Router } from '@angular/router';
-import { LoginService } from './services/login.service';
-import * as $ from 'jquery';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faAnchor } from '@fortawesome/free-solid-svg-icons';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
-import { faIdBadge } from '@fortawesome/free-solid-svg-icons';
-import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
-
-
-
 
 @Component({
   selector: 'app-root',
@@ -21,59 +10,69 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 export class AppComponent {
   title = 'Sistema';
 
-  faBars = faBars;
-  faAnchor = faAnchor;
-  faHome = faHome;
-  faUsers = faUsers;
-  faGear = faGear;
-  faIdBadge = faIdBadge;
-  faPowerOff = faPowerOff;
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  //Para ouvir se a opção voltar do navegador foi clicada e recarregar a pagina
+  @HostListener('window:popstate', ['$event'])
+  onpopstate(event: any) {
+    location.reload();
+  }
 
-  mostrarMenu!: boolean;
+  mostrarMenu?: boolean;
+
+  item?: any;
+
+  constructor(public auth: LoginService, private router: Router) { }
+
 
   ngOnInit(): void {
-    this.loginService.mostrarMenuEmitter.subscribe(
-      mostrar => this.mostrarMenu = mostrar
-    );
 
-    if(this.mostrarMenu === undefined || this.mostrarMenu === null) {
-      this.router.navigate(['/'])
+    this.updateMarginLeft()
+
+    //Capturando o token
+    this.item = window.localStorage.getItem('token')
+
+    this.showMenu()
+
+    console.log('Valor da sidebar' + this.sidebarWidth)
+
+
+
+  }
+
+  //Para exibir ou ocultar o menu
+  public showMenu(): void {
+
+    if (this.item == null) {
+      this.auth.mostrarMenuEmitter.subscribe(
+        mostrar => this.mostrarMenu = mostrar
+      );
+
+      if (this.mostrarMenu == null) {
+        this.router.navigate(['login'])
+      }
     }
 
-    const mobileScreen = window.matchMedia("(max-width: 990px )");
-    $(document).ready(function () {
-      $(".dashboard-nav-dropdown-toggle").click(function () {
-        $(this).closest(".dashboard-nav-dropdown")
-          .toggleClass("show")
-          .find(".dashboard-nav-dropdown")
-          .removeClass("show");
-        $(this).parent()
-          .siblings()
-          .removeClass("show");
-      });
-      $(".menu-toggle").click(function () {
-        if (mobileScreen.matches) {
-          $(".dashboard-nav").toggleClass("mobile-show");
-        } else {
-          $(".dashboard").toggleClass("dashboard-compact");
-        }
-      });
-    });
+    if (this.item != null) {
+      this.mostrarMenu = true
+    }
 
   }
 
-
-  destroyer() {
-    localStorage.removeItem('token')
-  }
+  divSidebar = document.getElementById(".menuSidebar")
 
 
-  public sair() {
-    localStorage.clear();
-    this.router.navigate(['/'])
-    console.log("token: " + localStorage.getItem('token'));
-  }
+  sidebarWidth?: number = this.divSidebar?.offsetWidth;
+  isMouseOverSidebar: boolean = false;
+
+  updateMarginLeft() {
+   /*  if (this.isMouseOverSidebar || this.sidebarWidth? > 0) {
+      this.sidebarWidth = this.isMouseOverSidebar ? this.sidebarWidth : 0;
+      const content: any = document.querySelector('conteudo');
+      content.style.marginLeft = `${this.sidebarWidth}px`;
+
+      console.log(content) */
+    }
+
+
 
 }

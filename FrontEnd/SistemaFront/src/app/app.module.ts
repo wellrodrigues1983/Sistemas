@@ -7,6 +7,10 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { MenuComponent } from './components/shared/menu/menu.component';
+import { LoginService } from './components/login/login.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 
@@ -16,6 +20,7 @@ import { CommonModule } from '@angular/common';
     AppComponent,
     LoginComponent,
     HomeComponent,
+    MenuComponent,
 
   ],
   imports: [
@@ -25,9 +30,10 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     HttpClientModule,
     CommonModule,
+    FontAwesomeModule,
 
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

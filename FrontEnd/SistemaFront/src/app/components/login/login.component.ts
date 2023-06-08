@@ -1,9 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../model/usuario';
-import { LoginService } from '../../services/login.service';
-import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-
 
 @Component({
   selector: 'app-login',
@@ -13,15 +11,17 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
 
-  constructor(private router: Router, public loginService: LoginService, /* public usuario: Usuario */) { }
+  constructor(public loginService: LoginService, /* public usuario: Usuario */) { }
 
   loginForm!: UntypedFormGroup;
   public usuario: Usuario = new Usuario();
 
 
   ngOnInit(): void {
+
     this.destroyerToken()
     this.createForm(new Usuario());
+
 
   }
 
