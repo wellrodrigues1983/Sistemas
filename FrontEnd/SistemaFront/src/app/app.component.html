@@ -1,19 +1,13 @@
-<!-- <app-menu *ngIf="mostrarMenu"></app-menu> -->
-
 <div>
-  <div>
-    <app-menu
-      *ngIf="mostrarMenu"
-      (sidebarWidthChange)="updateMarginLeft()"
-      (mouseover)="isMouseOverSidebar = true"
-      (mouseleave)="isMouseOverSidebar = false">
-    </app-menu>
-    <div>
-      <div [style.marginLeft.px]="sidebarWidth">
-        <div class="conteudo">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-menu
+    *ngIf="mostrarMenu"
+    (sidebarWidthChange)="updateMarginLeft()"
+    (mouseover)="isMouseOverSidebar = true"
+    (mouseleave)="isMouseOverSidebar = false"
+  >
+  </app-menu>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
 </div>

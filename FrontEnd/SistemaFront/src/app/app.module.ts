@@ -10,8 +10,9 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './components/shared/menu/menu.component';
 import { LoginService } from './components/login/login.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-
+import { CadastroClientesComponent } from './components/cadastro-clientes/cadastro-clientes.component';
+import { EstoqueComponent } from './components/estoque/estoque.component';
+import { CpfCnpjPipe } from './pipes/cpfCnpj.pipe';
 
 
 
@@ -21,6 +22,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     HomeComponent,
     MenuComponent,
+    CadastroClientesComponent,
+    EstoqueComponent,
+    CpfCnpjPipe
 
   ],
   imports: [
@@ -31,6 +35,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     CommonModule,
     FontAwesomeModule,
+
+
 
   ],
   providers: [LoginService],

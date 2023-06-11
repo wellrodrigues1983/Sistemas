@@ -5,24 +5,24 @@
     <nav class="main-menu">
       <ul>
         <li>
-          <a href="https://jbfarrow.com">
+          <a [routerLink]="['/home']">
             <i class="fa fa-home fa-2x"></i>
             <span class="nav-text"> Home </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="#">
+          <a [routerLink]="['/cadastroCli']">
             <fa-icon class="fa" [icon]="faUsers"></fa-icon>
             <span class="nav-text"> Cadastro de clientes </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="#">
+          <a [routerLink]="['/estoque']">
             <fa-icon class="fa" [icon]="faBoxOpen"></fa-icon>
             <span class="nav-text"> Estoque </span>
           </a>
         </li>
-        <li class="has-subnav">
+        <!-- <li class="has-subnav">
           <a href="#">
             <i class="fa fa-camera-retro fa-2x"></i>
             <span class="nav-text"> Survey Photos </span>
@@ -57,7 +57,7 @@
             <i class="fa fa-info fa-2x"></i>
             <span class="nav-text"> Documentation </span>
           </a>
-        </li>
+        </li> -->
       </ul>
 
       <ul class="logout">
