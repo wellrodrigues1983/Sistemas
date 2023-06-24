@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Const } from '../../constants/const';
+import { Const } from '../constants/const';
 import { Router } from '@angular/router';
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../model/usuario';
+import { Usuario } from '../model/usuario';
 import { LoginService } from './login.service';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 

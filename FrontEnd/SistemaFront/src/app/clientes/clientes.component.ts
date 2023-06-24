@@ -9,12 +9,12 @@ import { ExternalService } from 'src/app/services/external.service';
 
 @Component({
   selector: 'app-cadastro-clientes',
-  templateUrl: './cadastro-clientes.component.html',
-  styleUrls: ['./cadastro-clientes.component.css']
+  templateUrl: './clientes.component.html',
+  styleUrls: ['./clientes.component.css']
 })
 
 
-export class CadastroClientesComponent implements OnInit {
+export class ClientesComponent implements OnInit {
 
   public cadastroForm!: FormGroup;
   pipeCnpjCpf: CpfCnpjPipe = new CpfCnpjPipe;
